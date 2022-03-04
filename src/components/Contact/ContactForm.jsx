@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { validateEmail } from "../../utils/helpers";
 
 function ContactForm() {
   const [formState, setFormState] = useState({
@@ -8,7 +9,19 @@ function ContactForm() {
   });
   const { name, email, message } = formState;
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   function handleChange(e) {
+    if (e.target.name === "email") {
+      const isValid = validateEmail(e.target.value);
+      // console.log(isValid);
+      !isValid ? setErrorMessage("Your email is invalid") : setErrorMessage("");
+    } else {
+      !e.target.value.length
+        ? setErrorMessage(`${e.target.name} is required`)
+        : setErrorMessage("");
+    }
+
     // Another way to do this
     // const { name, value } = e.target;
     // setFormState((prevValue) => {
@@ -16,7 +29,10 @@ function ContactForm() {
     // });
 
     // Objects are re-written, not merged, we use the spread operator so that we don't have to write down the rest of properties
-    setFormState({ ...formState, [e.target.name]: e.target.value });
+    // eslint-disable-next-line no-unused-expressions
+    !errorMessage
+      ? setFormState({ ...formState, [e.target.name]: e.target.value })
+      : null;
   }
 
   function handleSubmit(e) {
@@ -29,8 +45,12 @@ function ContactForm() {
         <div>
           <label htmlFor="name">Name:</label>
           <input
-            onChange={handleChange}
-            value={name}
+            // onBlur is used here for when the user has changed the focus by clicking
+            // somewhere else, if what is inside is not allowed by the error message then
+            // a text will be rendered under the textarea saying that what they have is
+            // not allowed
+            onBlur={handleChange}
+            defaultValue={name}
             required
             type="text"
             name="name"
@@ -39,8 +59,8 @@ function ContactForm() {
         <div>
           <label htmlFor="email">Email address:</label>
           <input
-            onChange={handleChange}
-            value={email}
+            onBlur={handleChange}
+            defaultValue={email}
             required
             type="email"
             name="email"
@@ -49,12 +69,18 @@ function ContactForm() {
         <div>
           <label htmlFor="message">Message:</label>
           <textarea
-            onChange={handleChange}
-            value={message}
+            onBlur={handleChange}
+            defaultValue={message}
             required
             name="message"
             rows="5"
           />
+          {/* Custom error message */}
+          {errorMessage && (
+            <div>
+              <p className="error-text">{errorMessage}</p>
+            </div>
+          )}
         </div>
         <button type="submit">Submit</button>
       </form>
