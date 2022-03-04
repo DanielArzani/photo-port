@@ -2,7 +2,9 @@
 
 exports[`Nav Component should match snapshot 1`] = `
 <DocumentFragment>
-  <header>
+  <header
+    class="flex-row px-1"
+  >
     <h2>
       <a
         data-testid="link"
@@ -31,7 +33,9 @@ exports[`Nav Component should match snapshot 1`] = `
             About me
           </a>
         </li>
-        <li>
+        <li
+          class="mx-2 navActive"
+        >
           <span>
             Contact
           </span>

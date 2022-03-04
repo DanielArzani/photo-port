@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Modal from "../Modal/Modal";
 
 function PhotoList({ category }) {
   const [photos] = useState([
@@ -118,12 +119,18 @@ function PhotoList({ category }) {
     },
   ]);
 
+  const [currentPhoto, setCurrentPhoto] = useState();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const currentPhotos = photos.filter(
     (photo) => photo.category === category.name
   );
   //   console.log(currentPhotos);
 
   function mapPhotos(image, i) {
+    console.log(image);
+    console.log(category);
     return (
       <img
         // adding .default made it not work!
@@ -134,12 +141,28 @@ function PhotoList({ category }) {
         alt={image.name}
         className="img-thumbnail mx-1"
         key={image.name}
+        onClick={() => {
+          toggleModal(image, i);
+        }}
       />
     );
   }
 
+  function toggleModal(image, i) {
+    // console.log(image, i);
+    setCurrentPhoto({ ...image, index: i });
+    setIsModalOpen(true);
+  }
+
   return (
     <div>
+      {isModalOpen && (
+        <Modal
+          currentPhoto={currentPhoto}
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+        />
+      )}
       <div className="flex-row">{currentPhotos.map(mapPhotos)}</div>
     </div>
   );
