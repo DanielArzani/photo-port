@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { About, Gallery, Nav, PhotoList } from "./components";
+import { About, Gallery, Nav, ContactForm } from "./components";
 
 function App() {
   // Don't need the setter, this offers no advantages over simply having categories = this array
@@ -27,6 +27,7 @@ function App() {
         currentCategory={currentCategory}
       />
       <main>
+        <ContactForm />
         <Gallery currentCategory={currentCategory} />
         <About />
       </main>
