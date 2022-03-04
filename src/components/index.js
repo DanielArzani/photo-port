@@ -1,5 +1,5 @@
 import About from "./About/About";
 import Nav from "./Nav/Nav";
-import Gallery from "./Gallery/Gallery";
+import { Gallery, PhotoList } from "./Gallery/gallery-index";
 
-export { About, Nav, Gallery };
+export { About, Nav, Gallery, PhotoList };
