@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 function PhotoList({ category }) {
-  //   console.log(category.name);
   const [photos] = useState([
     {
       name: "Grocery aisle",
@@ -122,7 +121,6 @@ function PhotoList({ category }) {
   const currentPhotos = photos.filter(
     (photo) => photo.category === category.name
   );
-  //   console.log(category);
   //   console.log(currentPhotos);
 
   function mapPhotos(image, i) {
