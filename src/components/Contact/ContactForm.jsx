@@ -14,7 +14,6 @@ function ContactForm() {
   function handleChange(e) {
     if (e.target.name === "email") {
       const isValid = validateEmail(e.target.value);
-      // console.log(isValid);
       !isValid ? setErrorMessage("Your email is invalid") : setErrorMessage("");
     } else {
       !e.target.value.length
@@ -22,13 +21,6 @@ function ContactForm() {
         : setErrorMessage("");
     }
 
-    // Another way to do this
-    // const { name, value } = e.target;
-    // setFormState((prevValue) => {
-    //   return { ...prevValue, [name]: value };
-    // });
-
-    // Objects are re-written, not merged, we use the spread operator so that we don't have to write down the rest of properties
     // eslint-disable-next-line no-unused-expressions
     !errorMessage
       ? setFormState({ ...formState, [e.target.name]: e.target.value })

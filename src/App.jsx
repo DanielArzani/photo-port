@@ -3,7 +3,6 @@ import { About, Gallery, Nav, ContactForm } from "./components";
 import "./index.css";
 
 function App() {
-  // Don't need the setter, this offers no advantages over simply having categories = this array
   const [categories] = useState([
     {
       name: "commercial",

@@ -126,18 +126,11 @@ function PhotoList({ category }) {
   const currentPhotos = photos.filter(
     (photo) => photo.category === category.name
   );
-  //   console.log(currentPhotos);
 
   function mapPhotos(image, i) {
-    console.log(image);
-    console.log(category);
     return (
       <img
-        // adding .default made it not work!
         src={require(`../../assets/small/${category.name}/${i}.jpg`)}
-        // Seems like I need to require it since import doesn't work inline and I can't just
-        // leave it as a string
-        // src={`../../assets/small/${category.name}/${i}.jpg`}
         alt={image.name}
         className="img-thumbnail mx-1"
         key={image.name}
@@ -149,7 +142,6 @@ function PhotoList({ category }) {
   }
 
   function toggleModal(image, i) {
-    // console.log(image, i);
     setCurrentPhoto({ ...image, index: i });
     setIsModalOpen(true);
   }

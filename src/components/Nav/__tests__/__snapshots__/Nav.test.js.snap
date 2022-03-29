@@ -34,7 +34,7 @@ exports[`Nav Component should match snapshot 1`] = `
           </a>
         </li>
         <li
-          class="mx-2 navActive"
+          class="mx-2 undefined"
         >
           <span>
             Contact

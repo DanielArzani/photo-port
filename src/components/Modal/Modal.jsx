@@ -1,7 +1,6 @@
 import React from "react";
 
 function Modal({ currentPhoto, isModalOpen, setIsModalOpen }) {
-  console.log(currentPhoto);
   const { name, category, description, index } = currentPhoto;
 
   return (
